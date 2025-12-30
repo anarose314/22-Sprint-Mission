@@ -42,13 +42,20 @@ header {
 .auth-form__input {
   width: 100%;
   height: 56px;
-  padding: 16px;
+  padding: 15px 24px;
   border: none;
   border-radius: 12px;
   background: var(--gray100);
-  color: var(--gray800);
-  font-size: 16px;
   line-height: 1.5;
+}
+
+.auth-form__password .auth-form__input {
+  padding-right: 48px;
+}
+
+.auth-form__input::placeholder {
+  color: var(--gray400);
+  font-size: 16px;
 }
 
 .auth-form__password {
@@ -76,7 +83,7 @@ header {
 
 .auth-form__submit-btn {
   height: 56px;
-  background: var(--blue);
+  background: var(--gray400);
   border: none;
   border-radius: 9999px;
   color: var(--gray100);
@@ -84,6 +91,10 @@ header {
   font-weight: 600;
   line-height: 1.6;
   cursor: pointer;
+}
+
+.auth-form__submit-btn.active {
+  background: var(--blue);
 }
 
 .auth-simple-login {
@@ -124,4 +135,28 @@ header {
 
 .auth-extra__link {
   color: var(--blue);
+}
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .auth-container {
+    padding: 0 52px;
+    box-sizing: content-box;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .auth-container {
+    padding: 0 16px;
+    max-width: 400px;
+  }
+
+  .header__logo {
+    width: 198px;
+  }
+
+  .auth-form__label {
+    font-size: 14px;
+  }
 }
