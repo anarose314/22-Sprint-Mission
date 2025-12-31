@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/auth.css" />
+    <script src="/js/script.js" defer></script>
   </head>
   <body>
     <div class="auth-container auth-container--top-offset">
@@ -22,8 +23,8 @@
       </header>
       <section>
         <div class="auth-form__container">
-          <form action="#" class="auth-form">
-            <div class="auth-form__field">
+          <form action="/login/" class="auth-form">
+            <div class="auth-form__field" data-field="email">
               <label for="email" class="auth-form__label">이메일</label>
               <input
                 type="email"
@@ -32,8 +33,9 @@
                 class="auth-form__input"
                 placeholder="이메일을 입력해주세요"
               />
+              <p class="auth-form__error-message"></p>
             </div>
-            <div class="auth-form__field">
+            <div class="auth-form__field" data-field="nickname">
               <label for="nickname" class="auth-form__label">닉네임</label>
               <input
                 type="text"
@@ -42,8 +44,9 @@
                 class="auth-form__input"
                 placeholder="닉네임을 입력해주세요"
               />
+              <p class="auth-form__error-message"></p>
             </div>
-            <div class="auth-form__field">
+            <div class="auth-form__field" data-field="password">
               <label for="password" class="auth-form__label">비밀번호</label>
               <div class="auth-form__password">
                 <input
@@ -55,17 +58,18 @@
                 />
                 <button
                   type="button"
-                  class="auth-form__btn-visibility auth-form__btn-visibility--off"
+                  class="auth-form__btn-visibility"
                 ></button>
               </div>
+              <p class="auth-form__error-message"></p>
             </div>
-            <div class="auth-form__field">
+            <div class="auth-form__field" data-field="password-confirm">
               <label for="password-confirm" class="auth-form__label"
                 >비밀번호 확인</label
               >
               <div class="auth-form__password">
                 <input
-                  type="text"
+                  type="password"
                   name="password-confirm"
                   id="password-confirm"
                   class="auth-form__input"
@@ -73,9 +77,10 @@
                 />
                 <button
                   type="button"
-                  class="auth-form__btn-visibility auth-form__btn-visibility--on"
+                  class="auth-form__btn-visibility"
                 ></button>
               </div>
+              <p class="auth-form__error-message"></p>
             </div>
             <button type="submit" class="auth-form__submit-btn">
               회원가입
