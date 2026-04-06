@@ -5,7 +5,7 @@ import Footer from '@/shared/components/layout/footer';
 export default function HomeLayout() {
   return (
     <>
-      <Header />
+      <Header variant="home" />
       <Outlet />
       <Footer />
       <ScrollRestoration />

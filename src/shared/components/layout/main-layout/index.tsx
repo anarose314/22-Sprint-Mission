@@ -4,7 +4,7 @@ import Header from '@/shared/components/layout/header';
 export default function MainLayout() {
   return (
     <>
-      <Header />
+      <Header variant="main" />
       <Outlet />
       <ScrollRestoration />
     </>
