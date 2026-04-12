@@ -1,5 +1,6 @@
 import { getProducts } from '@/features/products/apis/products';
 import { ProductActionBar } from '@/features/products/components/all-products/product-action-bar';
+import { ProductPagination } from '@/features/products/components/all-products/product-pagination';
 import { ProductItem } from '@/features/products/components/product-item';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -31,6 +32,9 @@ export default function AllProducts() {
             </li>
           ))}
       </ul>
+      <div className="mt-10.75">
+        <ProductPagination />
+      </div>
     </section>
   );
 }
