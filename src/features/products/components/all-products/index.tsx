@@ -1,11 +1,12 @@
 import { getProducts } from '@/features/products/apis/products';
+import { ProductActionBar } from '@/features/products/components/product-action-bar';
 import { ProductItem } from '@/features/products/components/product-item';
 import { useQuery } from '@tanstack/react-query';
 
 export default function AllProducts() {
   const { data, isPending, isError } = useQuery({
-    queryKey: ['items'],
-    queryFn: () => getProducts(),
+    queryKey: ['items', 'recent'],
+    queryFn: () => getProducts({ orderBy: 'recent' }),
   });
   const items = data?.list;
 
@@ -15,13 +16,19 @@ export default function AllProducts() {
   if (isError) return <div>에러 발생</div>;
 
   return (
-    <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
-      {items &&
-        items.map((item) => (
-          <li key={item.id}>
-            <ProductItem item={item} />
-          </li>
-        ))}
-    </ul>
+    <>
+      <div className="mt-10 mb-6 flex justify-between">
+        <h2 className="typo-xl-bold text-secondary-900">전체 상품</h2>
+        <ProductActionBar />
+      </div>
+      <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
+        {items &&
+          items.map((item) => (
+            <li key={item.id}>
+              <ProductItem item={item} />
+            </li>
+          ))}
+      </ul>
+    </>
   );
 }
