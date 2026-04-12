@@ -2,6 +2,8 @@ import { getProducts } from '@/features/products/apis/products';
 import { ProductActionBar } from '@/features/products/components/all-products/product-action-bar';
 import { ProductPagination } from '@/features/products/components/all-products/product-pagination';
 import { ProductItem } from '@/features/products/components/product-item';
+import { ProductItemSkeleton } from '@/features/products/components/product-item/product-item-skeleton';
+import { ProductListError } from '@/features/products/components/product-list-error';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
@@ -11,7 +13,7 @@ export default function AllProducts() {
   const [orderBy, setOrderBy] = useState<'recent' | 'favorite'>('recent');
   const [page, setPage] = useState(1);
 
-  const { data, isPending, isError, isPlaceholderData } = useQuery({
+  const { data, isPending, isError, isPlaceholderData, refetch } = useQuery({
     queryKey: ['items', orderBy, page],
     queryFn: () => getProducts({ orderBy, page, pageSize: PAGE_SIZE }),
     placeholderData: keepPreviousData,
@@ -19,11 +21,6 @@ export default function AllProducts() {
   const items = data?.list;
   const totalCount = data?.totalCount || 0;
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
-
-  // TODO: 로딩 처리
-  if (isPending) return <div>로딩 중</div>;
-  // TODO: 에러 처리
-  if (isError) return <div>에러 발생</div>;
 
   const handleOrderByChange = (newOrderBy: 'recent' | 'favorite') => {
     if (orderBy === newOrderBy) return;
@@ -41,6 +38,13 @@ export default function AllProducts() {
         />
       </div>
       <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
+        {isPending &&
+          Array.from({ length: PAGE_SIZE }).map((_, i) => (
+            <li key={i}>
+              <ProductItemSkeleton />
+            </li>
+          ))}
+        {isError && <ProductListError onRetry={() => refetch()} />}
         {items &&
           items.map((item) => (
             <li key={item.id}>
