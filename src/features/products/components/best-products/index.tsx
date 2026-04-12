@@ -19,7 +19,7 @@ export default function BestProducts() {
   return (
     <section>
       <h2 className="typo-xl-bold text-secondary-900 mb-4">베스트 상품</h2>
-      <ul className="grid grid-cols-4 gap-x-6 gap-y-10">
+      <ul className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
         {isPending &&
           Array.from({ length: pageSize }).map((_, i) => (
             <li key={i}>
