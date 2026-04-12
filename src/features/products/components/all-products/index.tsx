@@ -4,23 +4,24 @@ import { ProductPagination } from '@/features/products/components/all-products/p
 import { ProductItem } from '@/features/products/components/product-item';
 import { ProductItemSkeleton } from '@/features/products/components/product-item/product-item-skeleton';
 import { ProductListError } from '@/features/products/components/product-list-error';
+import { useResponsivePageSize } from '@/shared/hooks/useResponsivePageSize';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
-const PAGE_SIZE = 10;
-
 export default function AllProducts() {
+  const pageSize = useResponsivePageSize(10, 6, 4);
+
   const [orderBy, setOrderBy] = useState<'recent' | 'favorite'>('recent');
   const [page, setPage] = useState(1);
 
   const { data, isPending, isError, isPlaceholderData, refetch } = useQuery({
-    queryKey: ['items', orderBy, page],
-    queryFn: () => getProducts({ orderBy, page, pageSize: PAGE_SIZE }),
+    queryKey: ['items', orderBy, page, pageSize],
+    queryFn: () => getProducts({ orderBy, page, pageSize }),
     placeholderData: keepPreviousData,
   });
   const items = data?.list;
   const totalCount = data?.totalCount || 0;
-  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   const handleOrderByChange = (newOrderBy: 'recent' | 'favorite') => {
     if (orderBy === newOrderBy) return;
@@ -39,7 +40,7 @@ export default function AllProducts() {
       </div>
       <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
         {isPending &&
-          Array.from({ length: PAGE_SIZE }).map((_, i) => (
+          Array.from({ length: pageSize }).map((_, i) => (
             <li key={i}>
               <ProductItemSkeleton />
             </li>
