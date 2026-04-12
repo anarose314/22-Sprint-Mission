@@ -1,5 +1,5 @@
 import { getProducts } from '@/features/products/apis/products';
-import { ProductActionBar } from '@/features/products/components/product-action-bar';
+import { ProductActionBar } from '@/features/products/components/all-products/product-action-bar';
 import { ProductItem } from '@/features/products/components/product-item';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';

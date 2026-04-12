@@ -1,5 +1,5 @@
-import type { ProductActionBarProps } from '@/features/products/components/product-action-bar/productActionBar.types';
-import { ProductMenu } from '@/features/products/components/product-menu';
+import type { ProductActionBarProps } from '@/features/products/components/all-products/product-action-bar/productActionBar.types';
+import { ProductMenu } from '@/features/products/components/all-products/product-menu';
 import { IcSearch } from '@/shared/assets/icons';
 import { Button } from '@/shared/components/button';
 import { cn } from '@/shared/utils/cn';

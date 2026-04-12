@@ -1,4 +1,4 @@
-import type { ProductMenuProps } from '@/features/products/components/product-menu/productMenu.types';
+import type { ProductMenuProps } from '@/features/products/components/all-products/product-menu/productMenu.types';
 import { IcDropDown } from '@/shared/assets/icons';
 import { cn } from '@/shared/utils/cn';
 import { useEffect, useRef, useState } from 'react';
