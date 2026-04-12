@@ -1,9 +1,10 @@
+import type { ProductActionBarProps } from '@/features/products/components/product-action-bar/productActionBar.types';
 import { ProductMenu } from '@/features/products/components/product-menu';
 import { IcSearch } from '@/shared/assets/icons';
 import { Button } from '@/shared/components/button';
 import { cn } from '@/shared/utils/cn';
 
-export function ProductActionBar() {
+export function ProductActionBar({ value, setValue }: ProductActionBarProps) {
   return (
     <div className="flex items-center gap-3">
       <form className="relative">
@@ -20,7 +21,7 @@ export function ProductActionBar() {
       <Button size="small40" className="h-10.5">
         상품 등록하기
       </Button>
-      <ProductMenu />
+      <ProductMenu value={value} setValue={setValue} />
     </div>
   );
 }

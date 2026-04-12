@@ -1,3 +1,4 @@
+import type { ProductMenuProps } from '@/features/products/components/product-menu/productMenu.types';
 import { IcDropDown } from '@/shared/assets/icons';
 import { cn } from '@/shared/utils/cn';
 import { useEffect, useRef, useState } from 'react';
@@ -7,13 +8,12 @@ const DROPDOWN_STYLE = cn(
 );
 
 const DROPDWON_BUTTON_STYLE = cn(
-  'felx h-10.5 w-full cursor-pointer items-center justify-center',
+  'flex h-10.5 w-full cursor-pointer items-center justify-center',
   'hover:bg-secondary-100'
 );
 
-export function ProductMenu() {
+export function ProductMenu({ value, setValue }: ProductMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState('recent');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,10 +30,10 @@ export function ProductMenu() {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  });
+  }, []);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setValue(event.currentTarget.value);
+    setValue(event.currentTarget.value as 'recent' | 'favorite');
     setIsOpen(false);
   };
 

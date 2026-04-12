@@ -2,11 +2,13 @@ import { getProducts } from '@/features/products/apis/products';
 import { ProductActionBar } from '@/features/products/components/product-action-bar';
 import { ProductItem } from '@/features/products/components/product-item';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export default function AllProducts() {
+  const [orderBy, setOrderBy] = useState<'recent' | 'favorite'>('recent');
   const { data, isPending, isError } = useQuery({
-    queryKey: ['items', 'recent'],
-    queryFn: () => getProducts({ orderBy: 'recent' }),
+    queryKey: ['items', orderBy],
+    queryFn: () => getProducts({ orderBy }),
   });
   const items = data?.list;
 
@@ -19,7 +21,7 @@ export default function AllProducts() {
     <>
       <div className="mt-10 mb-6 flex justify-between">
         <h2 className="typo-xl-bold text-secondary-900">전체 상품</h2>
-        <ProductActionBar />
+        <ProductActionBar value={orderBy} setValue={setOrderBy} />
       </div>
       <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
         {items &&

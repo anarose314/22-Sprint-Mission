@@ -10,3 +10,5 @@ export interface Product {
   favoriteCount: number;
   createdAt: string;
 }
+
+export type ProductSortOption = 'recent' | 'favorite';
