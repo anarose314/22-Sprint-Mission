@@ -14,7 +14,7 @@ export default function Header({ variant }: HeaderProps) {
   return (
     <header className="h-17.5 border-b border-b-[#DFDFDF] bg-white px-6">
       <div className="mx-auto flex h-full max-w-380 items-center justify-between">
-        <div className="flex h-full items-center gap-8.5">
+        <div className="flex h-full items-center gap-1 md:gap-5 lg:gap-8.5">
           <h1>
             <Link to="/" className="hover-fade">
               <Logo className="hidden md:block" />
@@ -29,7 +29,9 @@ export default function Header({ variant }: HeaderProps) {
                   to={nav.to}
                   className={({ isActive }) =>
                     cn(
-                      'typo-2lg-bold text-secondary-600 hover:bg-secondary-100 flex items-center px-3.75',
+                      'typo-lg-bold text-secondary-600 flex items-center px-1',
+                      'md:typo-2lg-bold md:px-3.75',
+                      'hover:bg-secondary-100',
                       isActive && 'text-primary-100'
                     )
                   }
