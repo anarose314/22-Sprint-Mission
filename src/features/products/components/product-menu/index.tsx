@@ -11,7 +11,7 @@ const DROPDWON_BUTTON_STYLE = cn(
   'hover:bg-secondary-100'
 );
 
-export function DropdownMenu() {
+export function ProductMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState('recent');
   const dropdownRef = useRef<HTMLDivElement>(null);

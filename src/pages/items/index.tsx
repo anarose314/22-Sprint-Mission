@@ -2,7 +2,7 @@ import AllProducts from '@/features/products/components/all-products';
 import BestProducts from '@/features/products/components/best-products';
 import { IcSearch } from '@/shared/assets/icons';
 import { Button } from '@/shared/components/button';
-import { DropdownMenu } from '@/features/products/components/dropdown-menu';
+import { ProductMenu } from '@/features/products/components/product-menu';
 import { cn } from '@/shared/utils/cn';
 
 export default function ItemsPage() {
@@ -27,7 +27,7 @@ export default function ItemsPage() {
           <Button size="small40" className="h-10.5">
             상품 등록하기
           </Button>
-          <DropdownMenu />
+          <ProductMenu />
         </div>
       </div>
       <AllProducts />
