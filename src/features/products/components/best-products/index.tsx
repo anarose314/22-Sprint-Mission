@@ -19,7 +19,7 @@ export default function BestProducts() {
   if (isError) return <div>에러 발생</div>;
 
   return (
-    <>
+    <section>
       <h2 className="typo-xl-bold text-secondary-900 mb-4">베스트 상품</h2>
       <ul className="grid grid-cols-4 gap-x-6 gap-y-10">
         {items &&
@@ -29,6 +29,6 @@ export default function BestProducts() {
             </li>
           ))}
       </ul>
-    </>
+    </section>
   );
 }

@@ -18,8 +18,8 @@ export default function AllProducts() {
   if (isError) return <div>에러 발생</div>;
 
   return (
-    <>
-      <div className="mt-10 mb-6 flex justify-between">
+    <section>
+      <div className="mb-6 flex justify-between">
         <h2 className="typo-xl-bold text-secondary-900">전체 상품</h2>
         <ProductActionBar value={orderBy} setValue={setOrderBy} />
       </div>
@@ -31,6 +31,6 @@ export default function AllProducts() {
             </li>
           ))}
       </ul>
-    </>
+    </section>
   );
 }

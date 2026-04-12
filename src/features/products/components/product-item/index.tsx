@@ -17,7 +17,7 @@ export function ProductItem({ item }: ProductItemProps) {
   };
 
   return (
-    <div className="hover-fade">
+    <article className="hover-fade">
       <figure className="aspect-square overflow-hidden rounded-2xl bg-black/10">
         <img
           src={images?.[0] || DUMMY_IMAGE}
@@ -34,6 +34,6 @@ export function ProductItem({ item }: ProductItemProps) {
           <p className="typo-xs-medium text-secondary-600">{favoriteCount}</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
