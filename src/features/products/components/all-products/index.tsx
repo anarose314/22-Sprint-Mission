@@ -25,11 +25,20 @@ export default function AllProducts() {
   // TODO: 에러 처리
   if (isError) return <div>에러 발생</div>;
 
+  const handleOrderByChange = (newOrderBy: 'recent' | 'favorite') => {
+    if (orderBy === newOrderBy) return;
+    setOrderBy(newOrderBy);
+    setPage(1);
+  };
+
   return (
     <section>
       <div className="mb-6 flex justify-between">
         <h2 className="typo-xl-bold text-secondary-900">전체 상품</h2>
-        <ProductActionBar value={orderBy} setValue={setOrderBy} />
+        <ProductActionBar
+          value={orderBy}
+          onOrderByChange={handleOrderByChange}
+        />
       </div>
       <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
         {items &&

@@ -12,7 +12,7 @@ const DROPDWON_BUTTON_STYLE = cn(
   'hover:bg-secondary-100'
 );
 
-export function ProductMenu({ value, setValue }: ProductMenuProps) {
+export function ProductMenu({ value, onOrderByChange }: ProductMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +33,7 @@ export function ProductMenu({ value, setValue }: ProductMenuProps) {
   }, []);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setValue(event.currentTarget.value as 'recent' | 'favorite');
+    onOrderByChange(event.currentTarget.value as 'recent' | 'favorite');
     setIsOpen(false);
   };
 

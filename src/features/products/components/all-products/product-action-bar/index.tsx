@@ -5,7 +5,10 @@ import { Button } from '@/shared/components/button';
 import { cn } from '@/shared/utils/cn';
 import { Link } from 'react-router';
 
-export function ProductActionBar({ value, setValue }: ProductActionBarProps) {
+export function ProductActionBar({
+  value,
+  onOrderByChange,
+}: ProductActionBarProps) {
   return (
     <div className="flex items-center gap-3">
       <search>
@@ -25,7 +28,7 @@ export function ProductActionBar({ value, setValue }: ProductActionBarProps) {
       <Button as={Link} to="/additem" size="small40" className="h-10.5">
         상품 등록하기
       </Button>
-      <ProductMenu value={value} setValue={setValue} />
+      <ProductMenu value={value} onOrderByChange={onOrderByChange} />
     </div>
   );
 }
