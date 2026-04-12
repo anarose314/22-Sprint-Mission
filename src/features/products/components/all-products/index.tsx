@@ -46,7 +46,7 @@ export default function AllProducts() {
           onOrderByChange={handleOrderByChange}
         />
       </div>
-      <ul className="grid grid-cols-5 gap-x-6 gap-y-10">
+      <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
         {isPending &&
           Array.from({ length: pageSize }).map((_, i) => (
             <li key={i}>
