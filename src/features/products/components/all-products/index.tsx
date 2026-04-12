@@ -2,16 +2,23 @@ import { getProducts } from '@/features/products/apis/products';
 import { ProductActionBar } from '@/features/products/components/all-products/product-action-bar';
 import { ProductPagination } from '@/features/products/components/all-products/product-pagination';
 import { ProductItem } from '@/features/products/components/product-item';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+
+const PAGE_SIZE = 10;
 
 export default function AllProducts() {
   const [orderBy, setOrderBy] = useState<'recent' | 'favorite'>('recent');
-  const { data, isPending, isError } = useQuery({
-    queryKey: ['items', orderBy],
-    queryFn: () => getProducts({ orderBy }),
+  const [page, setPage] = useState(1);
+
+  const { data, isPending, isError, isPlaceholderData } = useQuery({
+    queryKey: ['items', orderBy, page],
+    queryFn: () => getProducts({ orderBy, page, pageSize: PAGE_SIZE }),
+    placeholderData: keepPreviousData,
   });
   const items = data?.list;
+  const totalCount = data?.totalCount || 0;
+  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
 
   // TODO: 로딩 처리
   if (isPending) return <div>로딩 중</div>;
@@ -32,9 +39,16 @@ export default function AllProducts() {
             </li>
           ))}
       </ul>
-      <div className="mt-10.75">
-        <ProductPagination />
-      </div>
+      {totalCount > 0 && (
+        <div className="mt-10.75">
+          <ProductPagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage}
+            isPlaceholderData={isPlaceholderData}
+          />
+        </div>
+      )}
     </section>
   );
 }
