@@ -3,6 +3,7 @@ import HomeLayout from '@/shared/components/layout/home-layout';
 import MainLayout from '@/shared/components/layout/main-layout';
 import HomePage from '@/pages/home';
 import ItemsPage from '@/pages/items';
+import AddItemPage from '@/pages/addItem';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/items',
         Component: ItemsPage,
+      },
+      {
+        path: '/additem',
+        Component: AddItemPage,
       },
     ],
   },

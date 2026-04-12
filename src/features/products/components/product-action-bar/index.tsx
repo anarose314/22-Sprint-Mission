@@ -3,6 +3,7 @@ import { ProductMenu } from '@/features/products/components/product-menu';
 import { IcSearch } from '@/shared/assets/icons';
 import { Button } from '@/shared/components/button';
 import { cn } from '@/shared/utils/cn';
+import { Link } from 'react-router';
 
 export function ProductActionBar({ value, setValue }: ProductActionBarProps) {
   return (
@@ -21,7 +22,7 @@ export function ProductActionBar({ value, setValue }: ProductActionBarProps) {
           <IcSearch className="text-secondary-400 absolute top-1/2 left-4 -translate-y-1/2" />
         </form>
       </search>
-      <Button size="small40" className="h-10.5">
+      <Button as={Link} to="/additem" size="small40" className="h-10.5">
         상품 등록하기
       </Button>
       <ProductMenu value={value} setValue={setValue} />
