@@ -1,11 +1,9 @@
-import type { ProductMenuProps } from '@/features/products/components/all-products/product-menu/productMenu.types';
-import { IcDropDown } from '@/shared/assets/icons';
+import type { ProductMenuProps } from '@/features/products/components/all-products/product-action-bar/product-menu/productMenu.types';
+import { IcDropDown, IcSort } from '@/shared/assets/icons';
 import { cn } from '@/shared/utils/cn';
 import { useEffect, useRef, useState } from 'react';
 
-const DROPDOWN_STYLE = cn(
-  'border-secondary-200 w-full rounded-xl border bg-white'
-);
+const DROPDOWN_STYLE = cn('border-secondary-200 rounded-xl border bg-white');
 
 const DROPDWON_BUTTON_STYLE = cn(
   'flex h-10.5 w-full cursor-pointer items-center justify-center',
@@ -38,20 +36,29 @@ export function ProductMenu({ value, onOrderByChange }: ProductMenuProps) {
   };
 
   return (
-    <div className="z-dropdown relative w-32.5" ref={dropdownRef}>
+    <div className="z-dropdown relative shrink-0" ref={dropdownRef}>
       <button
         type="button"
         className={cn(
           DROPDOWN_STYLE,
-          'flex h-10.5 cursor-pointer items-center justify-between px-5 py-3'
+          'flex h-10.5 w-10.5 cursor-pointer items-center justify-between px-2.25 py-2.25 md:w-32.5',
+          'md:px-5 md:py-3'
         )}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{value === 'recent' ? '최신순' : '좋아요순'}</span>
-        <IcDropDown />
+        <span className="hidden md:block">
+          {value === 'recent' ? '최신순' : '좋아요순'}
+        </span>
+        <IcDropDown className="hidden md:block" />
+        <IcSort className="text-secondary-800 h-6 w-6 md:hidden" />
       </button>
       {isOpen && (
-        <ul className={cn(DROPDOWN_STYLE, 'absolute top-12.5 overflow-hidden')}>
+        <ul
+          className={cn(
+            DROPDOWN_STYLE,
+            'absolute top-12.5 right-0 w-32.5 overflow-hidden'
+          )}
+        >
           <li>
             <button
               value="recent"

@@ -1,9 +1,8 @@
 import type { ProductActionBarProps } from '@/features/products/components/all-products/product-action-bar/productActionBar.types';
-import { ProductMenu } from '@/features/products/components/all-products/product-menu';
+import { ProductAddButton } from '@/features/products/components/all-products/product-add-button';
+import { ProductMenu } from '@/features/products/components/all-products/product-action-bar/product-menu';
 import { IcSearch } from '@/shared/assets/icons';
-import { Button } from '@/shared/components/button';
 import { cn } from '@/shared/utils/cn';
-import { Link } from 'react-router';
 
 export function ProductActionBar({
   value,
@@ -11,13 +10,13 @@ export function ProductActionBar({
 }: ProductActionBarProps) {
   return (
     <div className="flex items-center gap-3">
-      <search>
-        <form className="relative">
+      <search className="relative flex-1">
+        <form>
           <input
             type="text"
             aria-label="상품 검색"
             className={cn(
-              'bg-secondary-100 typo-lg-regular text-secondary-800 h-10.5 w-81.25 rounded-xl py-2.25 pr-4 pl-11',
+              'bg-secondary-100 typo-lg-regular text-secondary-800 h-10.5 w-full rounded-xl py-2.25 pr-4 pl-11 md:w-71.25 lg:w-81.25',
               'placeholder:text-secondary-400 placeholder:typo-lg-regular'
             )}
             placeholder="검색할 상품을 입력해주세요"
@@ -25,9 +24,7 @@ export function ProductActionBar({
           <IcSearch className="text-secondary-400 absolute top-1/2 left-4 -translate-y-1/2" />
         </form>
       </search>
-      <Button as={Link} to="/additem" size="small40" className="h-10.5">
-        상품 등록하기
-      </Button>
+      <ProductAddButton className="hidden md:flex" />
       <ProductMenu value={value} onOrderByChange={onOrderByChange} />
     </div>
   );

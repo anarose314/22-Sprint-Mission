@@ -1,5 +1,6 @@
 import { getProducts } from '@/features/products/apis/products';
 import { ProductActionBar } from '@/features/products/components/all-products/product-action-bar';
+import { ProductAddButton } from '@/features/products/components/all-products/product-add-button';
 import { ProductPagination } from '@/features/products/components/all-products/product-pagination';
 import { ProductItem } from '@/features/products/components/product-item';
 import { ProductItemSkeleton } from '@/features/products/components/product-item/product-item-skeleton';
@@ -39,8 +40,11 @@ export default function AllProducts() {
 
   return (
     <section>
-      <div className="mb-6 flex justify-between">
-        <h2 className="typo-xl-bold text-secondary-900">전체 상품</h2>
+      <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:gap-0">
+        <div className="flex items-center justify-between">
+          <h2 className="typo-xl-bold text-secondary-900">전체 상품</h2>
+          <ProductAddButton className="flex md:hidden" />
+        </div>
         <ProductActionBar
           value={orderBy}
           onOrderByChange={handleOrderByChange}
@@ -62,7 +66,7 @@ export default function AllProducts() {
           ))}
       </ul>
       {totalCount > 0 && (
-        <div className="mt-10.75">
+        <div className="mt-10">
           <ProductPagination
             currentPage={page}
             totalPages={totalPages}
