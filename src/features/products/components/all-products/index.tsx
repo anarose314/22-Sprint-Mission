@@ -13,6 +13,14 @@ export default function AllProducts() {
 
   const [orderBy, setOrderBy] = useState<'recent' | 'favorite'>('recent');
   const [page, setPage] = useState(1);
+  const [prevPageSize, setPrevPageSize] = useState(pageSize);
+
+  if (prevPageSize !== pageSize) {
+    const currentFirstItemIndex = (page - 1) * prevPageSize;
+    const newPage = Math.floor(currentFirstItemIndex / pageSize) + 1;
+    setPrevPageSize(pageSize);
+    setPage(newPage);
+  }
 
   const { data, isPending, isError, isPlaceholderData, refetch } = useQuery({
     queryKey: ['items', orderBy, page, pageSize],
