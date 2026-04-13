@@ -73,7 +73,7 @@ export function Input({
         />
       )}
       {errorMessage && (
-        <p id={errorId} className="typo-lg-semibold text-error mt-2">
+        <p id={errorId} className="typo-lg-semibold text-error">
           {errorMessage}
         </p>
       )}

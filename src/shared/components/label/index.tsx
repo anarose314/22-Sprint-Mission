@@ -1,13 +1,18 @@
 import type { LabelProps } from '@/shared/components/label/label.types';
 import { cn } from '@/shared/utils/cn';
 
-export function Label({ inputId, className, label }: LabelProps) {
+export function Label({
+  inputId,
+  className,
+  label,
+  as: Component = 'label',
+}: LabelProps) {
   return (
-    <label
-      htmlFor={inputId}
+    <Component
+      htmlFor={Component === 'label' ? inputId : undefined}
       className={cn('typo-2lg-bold text-secondary-800 block', className)}
     >
       {label}
-    </label>
+    </Component>
   );
 }
