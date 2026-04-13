@@ -1,3 +1,4 @@
+import { TagInputField } from '@/features/products/components/add-Item-form/tag-input-field';
 import { Button } from '@/shared/components/button';
 import { ImageUploader } from '@/shared/components/image-uploader';
 import { Input } from '@/shared/components/input';
@@ -28,12 +29,6 @@ export function AddItemForm() {
           required
         />
         <Input
-          label="상품명"
-          placeholder="상품명을 입력해주세요"
-          errorMessage=""
-          required
-        />
-        <Input
           label="판매가격"
           type="number"
           min="0"
@@ -41,6 +36,7 @@ export function AddItemForm() {
           errorMessage=""
           required
         />
+        <TagInputField />
       </form>
     </>
   );
