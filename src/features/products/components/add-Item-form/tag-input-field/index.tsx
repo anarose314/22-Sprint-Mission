@@ -38,6 +38,10 @@ export function TagInputField() {
     }
   };
 
+  const handleRemoveTag = (tag: string) => {
+    setTags((prev) => prev.filter((prevTag) => prevTag !== tag));
+  };
+
   return (
     <div>
       <Input
@@ -46,7 +50,7 @@ export function TagInputField() {
         errorMessage={tagError || undefined}
         onKeyDown={handleKeyDown}
       />
-      <TagList tags={tags} />
+      <TagList tags={tags} onRemoveTag={handleRemoveTag} />
     </div>
   );
 }
