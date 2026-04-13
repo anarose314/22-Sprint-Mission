@@ -2,7 +2,7 @@ import type { ImageUploaderProps } from '@/shared/components/image-uploader/imag
 import { IcAdd, IcClose } from '@/shared/assets/icons';
 import { Label } from '@/shared/components/label';
 import { cn } from '@/shared/utils/cn';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 export function ImageUploader({
   id,
@@ -14,6 +14,7 @@ export function ImageUploader({
   ...props
 }: ImageUploaderProps) {
   const [image, setImage] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const generatedId = useId();
   const inputId = id ?? generatedId;
@@ -22,16 +23,19 @@ export function ImageUploader({
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
 
-    if (!file) {
-      setImage(null);
-      onChange?.(null);
-      return;
+    if (file) {
+      const imgURL = URL.createObjectURL(file);
+      setImage(imgURL);
+      onChange?.(file);
     }
+  };
 
-    const imgURL = URL.createObjectURL(file);
-    setImage(imgURL);
-
-    onChange?.(file);
+  const handleImageDelete = () => {
+    setImage(null);
+    onChange?.(null);
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   };
 
   useEffect(() => {
@@ -68,6 +72,7 @@ export function ImageUploader({
           className="sr-only"
           accept="image/*"
           onChange={handleImageChange}
+          ref={inputRef}
           {...props}
         />
         {image && (
@@ -79,7 +84,14 @@ export function ImageUploader({
                 alt="업로드 된 이미지 미리보기"
               />
             </figure>
-            <IcClose className="absolute top-3 right-3 cursor-pointer" />
+            <button
+              type="button"
+              onClick={handleImageDelete}
+              aria-label="업로드된 이미지 삭제"
+              className="absolute top-3 right-3 flex cursor-pointer items-center justify-center"
+            >
+              <IcClose />
+            </button>
           </div>
         )}
       </div>
