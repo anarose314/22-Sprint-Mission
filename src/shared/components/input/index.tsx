@@ -1,4 +1,5 @@
 import type { InputProps } from '@/shared/components/input/input.types';
+import { Label } from '@/shared/components/label';
 import { cn } from '@/shared/utils/cn';
 import { useId, type ComponentProps, type Ref } from 'react';
 
@@ -41,15 +42,7 @@ export function Input({
   return (
     <div className="flex w-full flex-col gap-4">
       {label && (
-        <label
-          htmlFor={inputId}
-          className={cn(
-            'typo-2lg-bold text-secondary-800 block',
-            labelClassName
-          )}
-        >
-          {label}
-        </label>
+        <Label inputId={inputId} label={label} className={labelClassName} />
       )}
 
       {textarea ? (
