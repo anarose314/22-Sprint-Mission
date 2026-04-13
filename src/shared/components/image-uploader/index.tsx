@@ -49,7 +49,7 @@ export function ImageUploader({
   return (
     <div className="flex w-full flex-col gap-4">
       {label && <Label as={'p'} label={label} className={labelClassName} />}
-      <div className="grid w-147 grid-cols-2 gap-6">
+      <div className="grid w-full grid-cols-2 gap-6 md:w-147">
         <label
           aria-label="이미지 업로드"
           aria-invalid={Boolean(errorMessage)}
